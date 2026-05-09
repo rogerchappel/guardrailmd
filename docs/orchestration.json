@@ -1,0 +1,21 @@
+{
+  "name": "guardrailmd",
+  "version": 1,
+  "defaultBranch": "main",
+  "localFirst": true,
+  "commands": {
+    "install": "npm install",
+    "test": "npm test",
+    "check": "npm run check",
+    "build": "npm run build",
+    "smoke": "npm run smoke",
+    "validate": "bash scripts/validate.sh"
+  },
+  "agentPolicy": {
+    "pauseOnSeverity": ["high", "critical"],
+    "allowlistComment": "guardrailmd-ignore",
+    "externalMutation": "never by default",
+    "telemetry": "none"
+  },
+  "reports": ["human", "json", "sarif"]
+}
