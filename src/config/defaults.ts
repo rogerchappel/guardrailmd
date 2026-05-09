@@ -28,7 +28,7 @@ export const defaultConfig: GuardrailConfig = {
     { "name": "GitHub token", "pattern": "gh[pousr]_[A-Za-z0-9_]{30,}" },
     { "name": "Slack token", "pattern": "xox[baprs]-[A-Za-z0-9-]{20,}" },
     { "name": "AWS access key", "pattern": "AKIA[0-9A-Z]{16}" },
-    { "name": "Generic API key assignment", "pattern": "(?i)(api[_-]?key|token|secret)\\s*[:=]\\s*['\\\"]?[A-Za-z0-9_./+-]{20,}" }
+    { "name": "Generic API key assignment", "pattern": "(api[_-]?key|token|secret)\\s*[:=]\\s*['\\\"]?[A-Za-z0-9_./+-]{20,}" }
   ],
   missingConfirmation: {
     destructiveVerbs: ["delete", "destroy", "drop", "truncate", "overwrite", "purge", "revoke"],

@@ -9,7 +9,7 @@ export const secretLiteralRule = {
     evaluate(target, context) {
         const compiled = context.config.secretPatterns.map((entry) => ({
             name: entry.name,
-            regex: new RegExp(entry.pattern, "g")
+            regex: new RegExp(entry.pattern, "gi")
         }));
         const findings = [];
         for (const line of splitMarkdown(target.markdown)) {
