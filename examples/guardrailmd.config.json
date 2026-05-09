@@ -1,0 +1,4 @@
+{
+  "failOn": "high",
+  "externalWriteHosts": ["api.github.com", "hooks.slack.com", "example.internal"]
+}
