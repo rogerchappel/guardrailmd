@@ -1,5 +1,5 @@
 import { isSeverity } from "../severity.js";
-import type { ReportFormat, ScanOptions } from "../types.js";
+import type { ReportFormat, ScanOptions, Severity } from "../types.js";
 
 export interface ParsedCommand {
   command: "scan" | "init" | "help" | "version";
@@ -32,7 +32,7 @@ export function parseArgs(argv: string[], cwd: string): ParsedCommand {
   let format: ReportFormat = "human";
   let output: string | undefined;
   let configPath: string | undefined;
-  let failOn = "high";
+  let failOn: Severity = "high";
   for (let i = 0; i < args.length; i += 1) {
     const arg = args[i];
     if (!arg) continue;
@@ -48,8 +48,9 @@ export function parseArgs(argv: string[], cwd: string): ParsedCommand {
       configPath = take(args, i, arg);
       i += 1;
     } else if (arg === "--fail-on") {
-      failOn = take(args, i, arg);
-      if (!isSeverity(failOn)) throw new Error("--fail-on must be one of: info, low, medium, high, critical");
+      const severity = take(args, i, arg);
+      if (!isSeverity(severity)) throw new Error("--fail-on must be one of: info, low, medium, high, critical");
+      failOn = severity;
       i += 1;
     } else if (arg.startsWith("--")) {
       throw new Error(`Unknown option: ${arg}`);
