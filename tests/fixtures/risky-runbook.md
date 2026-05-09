@@ -18,4 +18,4 @@ A credential accidentally pasted:
 API_KEY=abc1234567890supersecretvalue
 ```
 
-Delete the customer backup bucket.
+Delete the stale production cluster.
