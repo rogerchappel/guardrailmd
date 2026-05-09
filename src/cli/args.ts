@@ -59,5 +59,8 @@ export function parseArgs(argv: string[], cwd: string): ParsedCommand {
     }
   }
   if (paths.length === 0) paths.push(".");
-  return { command: "scan", scan: { cwd, paths, format, output, configPath, failOn } };
+  const scan: ScanOptions = { cwd, paths, format, failOn };
+  if (output) scan.output = output;
+  if (configPath) scan.configPath = configPath;
+  return { command: "scan", scan };
 }
