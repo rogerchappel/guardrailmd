@@ -54,6 +54,8 @@ guardrailmd scan examples --format json
 guardrailmd scan examples --format sarif --output guardrailmd.sarif
 ```
 
+For a runbook-focused demo, see [`docs/tutorials/review-runbook-before-agent-use.md`](docs/tutorials/review-runbook-before-agent-use.md). It compares an unsafe cache-purge runbook with a reviewed version that adds preconditions, dry-run, bounded deletion, and rollback language.
+
 ## Config
 
 Generate defaults:
