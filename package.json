@@ -4,7 +4,7 @@
   "description": "Local-first Markdown safety lint for agent runbooks.",
   "type": "module",
   "bin": {
-    "guardrailmd": "dist/cli.js"
+    "guardrailmd": "./dist/cli.js"
   },
   "main": "./dist/index.js",
   "exports": {
@@ -15,7 +15,8 @@
     "examples",
     "README.md",
     "LICENSE",
-    "SECURITY.md"
+    "SECURITY.md",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "clean": "rm -rf dist",
