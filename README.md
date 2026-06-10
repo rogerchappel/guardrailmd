@@ -54,6 +54,17 @@ guardrailmd scan examples --format json
 guardrailmd scan examples --format sarif --output guardrailmd.sarif
 ```
 
+## Runnable demo
+
+Review the intentionally risky example runbook in both human and JSON formats:
+
+```sh
+npm run build
+bash examples/agent-runbook-review.sh
+```
+
+The demo keeps scanning local files only and ignores the non-zero finding exit so both report formats are visible in one run.
+
 ## Config
 
 Generate defaults:
