@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Release readiness: document local verification, npm package metadata, and pack contents for the next public release.
+
 ## 0.1.0 - Unreleased
 
 ### Added

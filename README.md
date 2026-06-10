@@ -65,6 +65,8 @@ bash examples/agent-runbook-review.sh
 
 The demo keeps scanning local files only and ignores the non-zero finding exit so both report formats are visible in one run.
 
+For a runbook-focused demo, see [`docs/tutorials/review-runbook-before-agent-use.md`](docs/tutorials/review-runbook-before-agent-use.md). It compares an unsafe cache-purge runbook with a reviewed version that adds preconditions, dry-run, bounded deletion, and rollback language.
+
 ## Config
 
 Generate defaults:
@@ -82,6 +84,8 @@ npm test
 npm run check
 npm run build
 npm run smoke
+npm run package:smoke
+npm run release:check
 bash scripts/validate.sh
 ```
 
@@ -99,3 +103,16 @@ GuardrailMD reads local Markdown and optional local JSON config. It does not exe
 ## License
 
 MIT
+
+## Development
+
+Use the published verification scripts before opening a release PR:
+
+- `npm run check` - tsc --noEmit
+- `npm run test` - npm run build && node --test "tests/**/*.test.js"
+- `npm run build` - tsc
+- `npm run smoke` - npm run build && bash scripts/smoke.sh
+- `npm run package:smoke` - npm pack --dry-run
+- `npm run release:check` - npm test && npm run check && npm run build && npm run smoke && npm run package:smoke
+
+`npm run release:check` is the broadest local readiness check when it is available.
