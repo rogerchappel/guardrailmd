@@ -54,22 +54,26 @@ guardrailmd scan examples --format json
 guardrailmd scan examples --format sarif --output guardrailmd.sarif
 ```
 
-## Demo recipe
+## Runnable demo
 
-Run the included risky runbook fixture to see how findings are reported before
-you point GuardrailMD at your own docs:
+Review the intentionally risky example runbook in both human and JSON formats:
 
 ```sh
-npm install
 npm run build
+bash examples/agent-runbook-review.sh
+```
+
+The demo keeps scanning local files only and ignores the non-zero finding exit so both report formats are visible in one run.
+
+For a direct CLI recipe against the older risky fixture:
+
+```sh
 node dist/cli.js scan examples/risky-runbook.md --format human --fail-on high
 node dist/cli.js scan examples/risky-runbook.md --format json --output /tmp/guardrailmd-demo.json --fail-on high
 test -s /tmp/guardrailmd-demo.json
 ```
 
-The fixture intentionally contains curl-to-shell, destructive shell, and
-destructive prose patterns. The commands above only read local Markdown and
-write the JSON report path you provide.
+For a runbook-focused demo, see [`docs/tutorials/review-runbook-before-agent-use.md`](docs/tutorials/review-runbook-before-agent-use.md). It compares an unsafe cache-purge runbook with a reviewed version that adds preconditions, dry-run, bounded deletion, and rollback language.
 
 ## Config
 
@@ -88,6 +92,8 @@ npm test
 npm run check
 npm run build
 npm run smoke
+npm run package:smoke
+npm run release:check
 bash scripts/validate.sh
 ```
 
@@ -105,3 +111,16 @@ GuardrailMD reads local Markdown and optional local JSON config. It does not exe
 ## License
 
 MIT
+
+## Development
+
+Use the published verification scripts before opening a release PR:
+
+- `npm run check` - tsc --noEmit
+- `npm run test` - npm run build && node --test "tests/**/*.test.js"
+- `npm run build` - tsc
+- `npm run smoke` - npm run build && bash scripts/smoke.sh
+- `npm run package:smoke` - npm pack --dry-run
+- `npm run release:check` - npm test && npm run check && npm run build && npm run smoke && npm run package:smoke
+
+`npm run release:check` is the broadest local readiness check when it is available.
