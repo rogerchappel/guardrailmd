@@ -54,6 +54,23 @@ guardrailmd scan examples --format json
 guardrailmd scan examples --format sarif --output guardrailmd.sarif
 ```
 
+## Demo recipe
+
+Run the included risky runbook fixture to see how findings are reported before
+you point GuardrailMD at your own docs:
+
+```sh
+npm install
+npm run build
+node dist/cli.js scan examples/risky-runbook.md --format human --fail-on high
+node dist/cli.js scan examples/risky-runbook.md --format json --output /tmp/guardrailmd-demo.json --fail-on high
+test -s /tmp/guardrailmd-demo.json
+```
+
+The fixture intentionally contains curl-to-shell, destructive shell, and
+destructive prose patterns. The commands above only read local Markdown and
+write the JSON report path you provide.
+
 ## Config
 
 Generate defaults:
