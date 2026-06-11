@@ -65,6 +65,14 @@ bash examples/agent-runbook-review.sh
 
 The demo keeps scanning local files only and ignores the non-zero finding exit so both report formats are visible in one run.
 
+For a direct CLI recipe against the older risky fixture:
+
+```sh
+node dist/cli.js scan examples/risky-runbook.md --format human --fail-on high
+node dist/cli.js scan examples/risky-runbook.md --format json --output /tmp/guardrailmd-demo.json --fail-on high
+test -s /tmp/guardrailmd-demo.json
+```
+
 For a runbook-focused demo, see [`docs/tutorials/review-runbook-before-agent-use.md`](docs/tutorials/review-runbook-before-agent-use.md). It compares an unsafe cache-purge runbook with a reviewed version that adds preconditions, dry-run, bounded deletion, and rollback language.
 
 ## Config
