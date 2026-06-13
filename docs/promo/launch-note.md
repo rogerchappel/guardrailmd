@@ -1,19 +1,20 @@
 # Launch Note Draft
 
-`guardrailmd` is a local-first Markdown safety linter for runbooks that humans, CI, or coding agents may follow.
+GuardrailMD is a local-first Markdown safety lint for agent runbooks and operational docs.
 
-The current demo scans an intentionally risky runbook and shows both human-readable and JSON reports for risky shell commands and destructive prose that lacks confirmation context.
+It scans Markdown before a human, CI job, or coding agent acts on instructions that may include destructive shell commands, secret-looking literals, external writes, or risky prose with no nearby safeguard language.
 
-## What to Show
+## What to show
 
-- `npm run build`
-- `bash examples/agent-runbook-review.sh`
-- The high-severity shell findings.
-- The JSON report shape for automation.
+- `examples/risky-runbook.md` as the intentionally unsafe input.
+- `examples/runbooks/cache-purge-reviewed.md` as the contrast case with review language.
+- `bash demo/ci-preflight.sh` to create human and SARIF reports in a temporary directory.
+- `guardrailmd init --write-config` for teams that want a checked-in starting config.
 
-## Limits
+## Positioning
 
-- GuardrailMD reports suspicious Markdown patterns.
-- It does not execute runbook commands.
-- It does not prove a runbook is safe or replace security review.
+Use GuardrailMD as a preflight reviewer for docs that become automation context. It does not execute commands, call remote services, or mutate the scanned files.
 
+## Honest limits
+
+GuardrailMD is a deterministic lint tool for common risky Markdown patterns. It does not prove a runbook is safe, replace a human reviewer, or understand every possible shell program.
