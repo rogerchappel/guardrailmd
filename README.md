@@ -65,6 +65,13 @@ bash examples/agent-runbook-review.sh
 
 The demo keeps scanning local files only and ignores the non-zero finding exit so both report formats are visible in one run.
 
+For a CI-style preflight demo that writes human and SARIF reports to a temporary
+directory:
+
+```sh
+bash demo/ci-preflight.sh
+```
+
 For a direct CLI recipe against the older risky fixture:
 
 ```sh
