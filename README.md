@@ -54,6 +54,16 @@ guardrailmd scan examples --format json
 guardrailmd scan examples --format sarif --output guardrailmd.sarif
 ```
 
+## Demo walkthrough
+
+To try GuardrailMD against an intentionally risky runbook fixture:
+
+```sh
+bash demo/runbook-safety-scan.sh
+```
+
+The script writes human and JSON reports to `${TMPDIR:-/tmp}/guardrailmd-demo`. See [docs/tutorials/review-a-risky-runbook.md](docs/tutorials/review-a-risky-runbook.md) for a reviewer-facing walkthrough.
+
 ## Config
 
 Generate defaults:
